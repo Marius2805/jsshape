@@ -29,6 +29,16 @@ function Rectangle(width, height)
         this.setSize(this.getWidth(), height);
     };
     
+    this.addWidth = function(width)
+    {
+        this.setSize(this.getWidth()+width, this.getHeight());
+    };
+    
+    this.addHeight = function(height)
+    {
+        this.setSize(this.getWidth(), this.getHeight()+height);
+    };
+    
     this.getWidth = function()
     {
         return this.points[0].reverse().add(this.points[1]).getLength();
@@ -36,7 +46,12 @@ function Rectangle(width, height)
     
     this.getHeight = function()
     {
-        return 50;
+        return this.points[3].subtract(this.points[0]).getLength();
+    };
+    
+    this.getRotation = function()
+    {
+        return this.points[1].subtract(this.points[0]).getAngle()-90;
     };
     
     

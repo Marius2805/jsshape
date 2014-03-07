@@ -52,7 +52,7 @@ function Vector(x, y)
         if(v instanceof Vector || v instanceof Point)
         {
             rv.x = this.x + v.x;
-            rv.x = this.y + v.y;
+            rv.y = this.y + v.y;
         }
         else
         {
@@ -68,7 +68,7 @@ function Vector(x, y)
         if(v instanceof Vector || v instanceof Point)
         {
             rv.x = this.x - v.x;
-            rv.x = this.y - v.y;
+            rv.y = this.y - v.y;
         }
         else
         {
@@ -84,7 +84,7 @@ function Vector(x, y)
         if(v instanceof Vector || v instanceof Point)
         {
             rv.x = this.x * v.x;
-            rv.x = this.y * v.y;
+            rv.y = this.y * v.y;
         }
         else
         {
@@ -100,7 +100,7 @@ function Vector(x, y)
         if(v instanceof Vector || v instanceof Point)
         {
             rv.x = this.x / v.x;
-            rv.x = this.y / v.y;
+            rv.y = this.y / v.y;
         }
         else
         {
@@ -150,7 +150,7 @@ function Vector(x, y)
         return this.resetAngle().addAngle(d);
     };
     
-    this.getString = function()
+    this.toString = function()
     {
       return ("x:"+this.x+" y:"+this.y+" l:"+this.getLength()+" d:"+this.getAngle());  
     };
