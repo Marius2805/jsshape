@@ -35,8 +35,10 @@ $(document).ready(function()
         vector = vector.setLength(vector.y/2+100);
         //shape.addRotation(delta/1000*360*0.1);
         rpol.addRotation(delta/1000*360*0.1);
+        rpol.addRadius(delta/1000*10);
         rectangle.addRotation(delta/1000*360*0.1);
-        rectangle.addWidth(delta/1000*100);
+        rectangle.addWidth(delta/1000*10);
+        
     };
     
     var draw = function(ctx)

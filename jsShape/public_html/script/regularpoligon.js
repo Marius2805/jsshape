@@ -13,6 +13,24 @@ function RegularPoligon(radius, edges)
         }
     };
     
+    this.setRadius = function(radius)
+    {
+        for(var i = 0; i < this.points.length; i++)
+        {
+            this.points[i] = this.points[i].setLength(radius);
+        }
+    };
+    
+    this.addRadius = function(radius)
+    {
+        this.setRadius(this.getRadius()+radius);
+    };
+    
+    this.getRadius = function()
+    {
+        return this.points[0].getLength();
+    };
+    
     this.init(radius, edges);
 }
 RegularPoligon.prototype = new Poligon();
