@@ -31,6 +31,11 @@ function RegularPoligon(radius, edges)
         return this.points[0].getLength();
     };
     
+    this.getInnerRadius = function()
+    {
+        return this.points[0].add(this.points[1].subtract(this.points[0]).divide(2)).getLength();
+    };
+    
     this.init(radius, edges);
 }
 RegularPoligon.prototype = new Poligon();

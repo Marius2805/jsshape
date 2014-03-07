@@ -9,7 +9,7 @@ $(document).ready(function()
     ctx.scale(FACTOR, FACTOR);
     var vector = new Vector(100, 100);
     var rectangle = new Rectangle(50, 50);
-    var circle = new Circle(0, 0, 10);
+    var circle = new Circle(200);
     var lastUpdate = new Date().getTime();
     var shape = new Poligon();
     shape.addPoint(new Point(-100,-100));
@@ -37,7 +37,8 @@ $(document).ready(function()
         rpol.addRotation(delta/1000*360*0.1);
         rpol.addRadius(delta/1000*10);
         rectangle.addRotation(delta/1000*360*0.1);
-        rectangle.addWidth(delta/1000*10);
+        rectangle.setWidth(rpol.getInnerRadius()*2);
+        circle.setRadius(rpol.getInnerRadius());
         
     };
     
@@ -49,6 +50,7 @@ $(document).ready(function()
 //        ctx.draw(circle, (new Vector(250, 250)).add(vector).add(vector.setAngle(vector.getAngle()*-1+45).setLength(100)).x, (new Vector(250, 250)).add(vector).add(vector.setAngle(vector.getAngle()*-1+45).setLength(100)).y, 0, "#0000ff");
         ctx.draw(rpol, 250, 250, "#ff0000");
         ctx.draw(rectangle, 250, 250, "#0000ff");
+        ctx.draw(circle, 250, 250, "#00aa00");
     };
     
     
