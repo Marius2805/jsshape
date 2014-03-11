@@ -43,8 +43,13 @@ CanvasRenderingContext2D.prototype.drawVector = function(v)
     }
 };
 
+
 CanvasRenderingContext2D.prototype.draw = function(object, x, y, color){
-    if(object instanceof Vector)
+    if(object instanceof dShape)
+    {
+        object.draw(this);
+    }
+    else if(object instanceof Vector)
     {
         this.save();
         this.translate(x, y);

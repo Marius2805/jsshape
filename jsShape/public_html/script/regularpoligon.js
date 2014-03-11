@@ -36,6 +36,21 @@ function RegularPoligon(radius, edges)
         return this.points[0].add(this.points[1].subtract(this.points[0]).divide(2)).getLength();
     };
     
+    this.getRadiusAt = function(deg)
+    {
+        deg = deg+360-this.getRotation();
+        while(deg<0)
+        {
+            deg+=360;
+        }
+        var edges = this.points.length;
+        var span = 360/edges;
+        var alpha = deg%span;
+        var gamma = (180-span)/2;
+        var beta = 180-alpha-gamma;
+        return this.getRadius()/(Math.sin(beta*Math.PI/180)/Math.sin(gamma*Math.PI/180));
+    };
+    
     this.init(radius, edges);
 }
 RegularPoligon.prototype = new Poligon();

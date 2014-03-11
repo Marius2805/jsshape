@@ -46,18 +46,26 @@ function Vector(x, y)
         }
     };
     
-    this.add = function(v)
+    this.add = function(v1, v2)
     {
         var rv = this.clone();
-        if(v instanceof Vector || v instanceof Point)
+        if(v1 instanceof Vector || v1 instanceof Point)
         {
-            rv.x = this.x + v.x;
-            rv.y = this.y + v.y;
+            rv.x = this.x + v1.x;
+            rv.y = this.y + v1.y;
         }
-        else
+        else if(typeof v1 === "number")
         {
-            rv.x = this.x + v;
-            rv.y = this.y + v;
+            if(typeof v2 === "number")
+            {
+                rv.x = this.x + v1;
+                rv.y = this.y + v2;
+            }
+            else
+            {
+                rv.x = this.x + v1;
+                rv.y = this.y + v1;
+            }
         }
         return rv;
     };
