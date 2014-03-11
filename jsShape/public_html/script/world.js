@@ -45,17 +45,15 @@ function World(canvas)
             this.ctx.fillText("FPS: " + this.fpsCalculator.getFPS(), 7, 20);
         }
     };
-    
-    var object = new dShape(new Rectangle(100, 50), new Vector(250, 250), "#333300");
-    
+        
     this.update = function(delta)
     {
-        object.shape.addRotation(360*delta/1000*0.1);
+        
     };
     
     this.draw = function(ctx)
     {
-        object.draw(ctx);
+        
     };
     
     this.setFpsLimit = function(fpsLimit)
@@ -89,6 +87,16 @@ function World(canvas)
     {
         showFps = bool;
         return showFps;
+    };
+    
+    this.getWidth = function()
+    {
+        return $(this.canvas).width();
+    };
+    
+    this.getHeight = function()
+    {
+        return $(this.canvas).height();
     };
     
     this.init(canvas);

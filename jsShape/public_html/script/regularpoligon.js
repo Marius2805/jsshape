@@ -4,6 +4,7 @@ function RegularPoligon(radius, edges)
     
     this.init = function(radius, edges)
     {
+        this.points = new Array();
         for(var i = 0; i < edges; i++)
         {
             var v = new Vector(1,1);

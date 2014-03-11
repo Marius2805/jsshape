@@ -1,6 +1,11 @@
 function Poligon()
 {
-    this.points = new Array();
+    this.points;
+    
+    this.init = function()
+    {
+        this.points = new Array();
+    };
     
     this.addPoint = function(point)
     {
@@ -55,4 +60,5 @@ function Poligon()
         }
     };
     
+    this.init();
 }

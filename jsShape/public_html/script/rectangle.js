@@ -3,6 +3,7 @@ function Rectangle(width, height)
     
     this.init = function(width, height)
     {
+        this.points = new Array();
         this.addPoint(new Vector(-width/2, -height/2));
         this.addPoint(new Vector(width/2, -height/2));
         this.addPoint(new Vector(width/2, height/2));

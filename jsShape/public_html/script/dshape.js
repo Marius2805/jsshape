@@ -28,6 +28,11 @@ function dShape(shape, position, color, lineColor, lineWidth)
         this.shape = shape;
     };
     
+    this.getPosition = function()
+    {
+        return this.position;
+    };
+    
     this.setPosition = function(position)
     {
         this.position = position;
