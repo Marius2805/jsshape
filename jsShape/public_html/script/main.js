@@ -1,9 +1,7 @@
-FACTOR = 2;
-FPS_LIMIT = 60;
-
 $(document).ready(function()
 {
-        var t = new Test1();
+      t = new Test1();
+        
 //    var canvas = document.getElementById("canvas");
 //    canvas.width*=FACTOR
 //    canvas.height*=FACTOR;

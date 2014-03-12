@@ -1,5 +1,5 @@
 
-function RegularPoligon(radius, edges)
+function RegularPolygon(radius, edges)
 {
     
     this.init = function(radius, edges)
@@ -54,4 +54,4 @@ function RegularPoligon(radius, edges)
     
     this.init(radius, edges);
 }
-RegularPoligon.prototype = new Poligon();
+RegularPolygon.prototype = new Polygon();

@@ -8,20 +8,27 @@
         <script src="script/vector.js"></script>
         <script src="script/point.js"></script>
         <script src="script/fpscalculator.js"></script>
-        <script src="script/poligon.js"></script>
+        <script src="script/polygon.js"></script>
         <script src="script/rectangle.js"></script>
         <script src="script/circle.js"></script>
-        <script src="script/regularpoligon.js"></script>
+        <script src="script/regularpolygon.js"></script>
         <script src="script/dshape.js"></script>
+        <script src="script/animator.js"></script>
+        <script src="script/animations/rotationanimation.js"></script>
         <script src="script/world.js"></script>
         <script src="script/test/test1.js"></script>
         <script src="script/test/test2.js"></script>
+        <script src="script/test/test3.js"></script>
         <script src="script/main.js"></script>
     </head>
     <body style="background: #000000;">
         <header></header>
         <section style="text-align: center">
             <canvas width="500" height="500" style="background: #ffffff" id="canvas"></canvas>
+            <br>
+            <button onclick="t.stop(); t = new Test1();">Test 1</button>
+            <button onclick="t.stop(); t = new Test2();">Test 2</button>
+            <button onclick="t.stop(); t = new Test3();">Test 3</button>
         </section>
         <footer></footer>
     </body>

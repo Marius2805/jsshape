@@ -43,6 +43,46 @@ function dShape(shape, position, color, lineColor, lineWidth)
         this.color = color;
     };
     
+    this.addRotation = function(deg, point)
+    {
+        if(point === undefined || point === null)
+        {
+            point = this.getPosition();
+        }
+        else 
+        {
+            if(!(point instanceof Vector))
+            {
+                point = point.toVector();
+            }
+            this.setPosition(point.add(this.getPosition().subtract(point).addAngle(deg)));
+        }
+        this.shape.addRotation(deg);
+    };
+    
+    this.getRotation = function(point)
+    {
+        if(point === undefined || point === null)
+        {
+            return this.shape.getRotation();
+        }
+        else if(point instanceof Vector)
+        {
+            return this.getPosition().subtract(point).getAngle();
+        }
+        else if(!(point instanceof Vector))
+        {
+            point = point.toVector();
+            return this.getPosition().subtract(point).getAngle();
+        }
+        
+    };
+    
+    this.setRotation = function(deg, point)
+    {
+        this.addRotation(deg-this.getRotation(point), point);
+    };
+    
     this.draw = function(ctx)
     {
         ctx.save();
@@ -66,7 +106,7 @@ function dShape(shape, position, color, lineColor, lineWidth)
             if(this.color!==undefined)ctx.fill();
             if(this.lineColor!==undefined)ctx.stroke();
         }
-        else if(this.shape instanceof Poligon)
+        else if(this.shape instanceof Polygon)
         {
             ctx.beginPath();
             if(this.shape.points.length>=3)

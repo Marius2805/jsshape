@@ -1,4 +1,4 @@
-function Poligon()
+function Polygon()
 {
     this.points;
     

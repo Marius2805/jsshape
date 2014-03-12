@@ -72,7 +72,7 @@ CanvasRenderingContext2D.prototype.draw = function(object, x, y, color){
         this.fill();
         this.restore();
     }
-    else if(object instanceof Poligon)
+    else if(object instanceof Polygon)
     {
         this.save();
         this.translate(x, y);

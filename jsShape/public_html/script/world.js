@@ -1,48 +1,63 @@
-function World(canvas)
+function World()
 {
-    this.canvas;
-    this.ctx;
-    this.fpsCalculator = new FpsCalculator();
-    this.timer;
-    this.fpsLimit = 60;
-    var showFps = true;
-    var running = false;
-    this.background = "#ffffff";
+    var canvas;
+    var ctx;
+    var fpsCalculator;
+    var animator;
+    var fpsLimit;
+    var showFps;
+    var scaleFactor;
+    var background;
+    var timer;
+    var running;
     
-    this.init = function(canvas)
+    
+    this.init = function()
     {
-        if(canvas !== undefined)
-        {
-            this.setCanvas(canvas);
-            this.start();
-        }
+        
+        
+    };
+    
+    this.defaultinit = function()
+    {
+        fpsCalculator = new FpsCalculator();
+        animator = new Animator();
+        this.setFpsLimit(60);
+        this.showFps(false);
+        this.setScaleFactor(1);
+        this.setBackground("#ffffff");
+        running = false;
     };
     
     this.start = function()
     {
-        this.fpsCalculator.addFrame();
+        fpsCalculator.addFrame();
         var object = this;
-        this.timer = window.setInterval(function(){object.loop();}, 1000/this.fpsLimit);
+        timer = window.setInterval(function(){object.loop();}, 1000/fpsLimit);
         running = true;
     };
     
     this.stop = function()
     {
-        window.clearInterval(this.timer);
+        window.clearInterval(timer);
         running = false;
     };
     
     this.loop = function()
     {
-        this.update(this.fpsCalculator.getDelta());
-        this.fpsCalculator.addFrame();
-        this.ctx.fillAll(this.background, 1);
-        this.draw(this.ctx);
+        animator.animate();
+        this.update(fpsCalculator.getDelta());
+        fpsCalculator.addFrame();
+        if(background !== undefined)
+        {
+            ctx.fillAll(background, 1);
+        }
+        this.draw(ctx);
         if(showFps)
         {
-            this.ctx.fillStyle = "#000000";
-            this.ctx.font = "20px Arial";
-            this.ctx.fillText("FPS: " + this.fpsCalculator.getFPS(), 7, 20);
+            ctx.fillStyle = "#000000";
+            ctx.font = "20px Arial";
+            ctx.fillText("FPS: " + fpsCalculator.getFPS(), 7, 20);
         }
     };
         
@@ -56,31 +71,40 @@ function World(canvas)
         
     };
     
-    this.setFpsLimit = function(fpsLimit)
+    this.setFpsLimit = function(fl)
     {
         var r = running;
         this.stop();
-        this.fpsLimit = fpsLimit;
+        fpsLimit = fl;
         if(r)
         {
             this.start();
         }
     };
     
-    this.setCanvas = function(canvas)
+    this.setCanvas = function(c)
     {
-        this.canvas = canvas;
-        this.ctx = canvas.getContext("2d");
-        this.setScaleFactor(1);
+        canvas = c;
+        ctx = canvas.getContext("2d");
+        this.setScaleFactor(scaleFactor);
+    };
+    
+    this.getAnimator = function()
+    {
+        return animator;
     };
     
     this.setScaleFactor = function(factor)
     {
-        $(this.canvas).css("width", $(this.canvas).width());
-        $(this.canvas).css("height", $(this.canvas).height());
-        this.canvas.width=$(this.canvas).width()*factor;
-        this.canvas.height=$(this.canvas).height()*factor;
-        this.ctx.scale(factor, factor);  
+        scaleFactor = factor;
+        if(canvas !== undefined)
+        {
+            $(canvas).css("width", $(canvas).width());
+            $(canvas).css("height", $(canvas).height());
+            canvas.width=$(canvas).width()*factor;
+            canvas.height=$(canvas).height()*factor;
+            ctx.scale(factor, factor);
+        }
     };
     
     this.showFps = function(bool)
@@ -91,13 +115,18 @@ function World(canvas)
     
     this.getWidth = function()
     {
-        return $(this.canvas).width();
+        return $(canvas).width();
     };
     
     this.getHeight = function()
     {
-        return $(this.canvas).height();
+        return $(canvas).height();
     };
     
-    this.init(canvas);
+    this.setBackground = function(b)
+    {
+        background = b;
+    };
+    
+    this.init();
 }

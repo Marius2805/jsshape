@@ -58,4 +58,4 @@ function Rectangle(width, height)
     
     this.init(width, height);
 }
-Rectangle.prototype = new Poligon();
+Rectangle.prototype = new Polygon();

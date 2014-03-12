@@ -6,11 +6,10 @@ function Test2()
      
     this.init = function()
     {
+        this.defaultinit();
         this.setCanvas(document.getElementById("canvas"));
         this.showFps(true);
-        this.setScaleFactor(2);
-        this.setFpsLimit(60);
-        this.background = "#004400";
+        this.setBackground("#5555ff");
         
         bigCircle = new dShape(new Circle(125), new Vector(300, 250), "#000055");
         smallCircle = new dShape(new Circle(bigCircle.shape.getRadius()*3/5), bigCircle.getPosition().add(new Vector(bigCircle.shape.getRadius()*-1.4, bigCircle.shape.getRadius()/5)), "#000055");
