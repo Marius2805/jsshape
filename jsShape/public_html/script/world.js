@@ -10,6 +10,9 @@ function World()
     var background;
     var timer;
     var running;
+    //needed to resize after fullscreen
+    var normalCanvasWidth;
+    var normalCanvasHeight;
     
     
     this.init = function()
@@ -32,6 +35,7 @@ function World()
     this.start = function()
     {
         fpsCalculator.addFrame();
+        animator.resume();
         var object = this;
         timer = window.setInterval(function(){object.loop();}, 1000/fpsLimit);
         running = true;
@@ -39,6 +43,7 @@ function World()
     
     this.stop = function()
     {
+        animator.stop();
         window.clearInterval(timer);
         running = false;
     };
@@ -87,6 +92,15 @@ function World()
         canvas = c;
         ctx = canvas.getContext("2d");
         this.setScaleFactor(scaleFactor);
+        normalCanvasWidth = $(canvas).width();
+        normalCanvasHeight = $(canvas).height();
+        var object = this;
+        document.addEventListener('webkitfullscreenchange', function(){
+            if(!(document.webkitIsFullScreen))
+            {
+                object.setSize(normalCanvasWidth, normalCanvasHeight);
+            }
+        });
     };
     
     this.getAnimator = function()
@@ -127,6 +141,43 @@ function World()
     {
         background = b;
     };
+    
+    this.setSize = function(width, height)
+    {
+        $(canvas).css("width", width);
+        $(canvas).css("height", height);
+        this.setScaleFactor(scaleFactor);
+    };
+    
+    this.setFullscreen = function(bool)
+    {
+        if(bool)
+        {
+            canvas.webkitRequestFullScreen();
+            this.setSize(screen.width, screen.height);
+        }
+        else
+        {
+            canvas.webkitCancleFullScreen();
+            this.setSize(normalCanvasWidth, normalCanvasHeight);
+        }
+    };
+    
+    this.isFullscreen = function()
+    {
+        return document.webkitIsFullScreen;
+    };
+    
+    this.getCanvas = function()
+    {
+        return canvas;
+    };
+    
+    this.isRunning = function()
+    {
+        return running;
+    };
+    
     
     this.init();
 }

@@ -12,14 +12,34 @@ function Test3()
         this.showFps(true);
         this.setBackground("#550000");
         
+       
+        
         circle1 = new dShape(new Circle(50), new Vector(400, 250), "#ff3333");
         circle2 = new dShape(new Circle(25), new Vector(325, 250), "#ff3333");
         circle3 = new dShape(new Circle(12.5), new Vector(287.5, 250), "#ff3333");
         circle4 = new dShape(new Circle(6.25), new Vector(268.75, 250), "#ff3333");
-        this.getAnimator().rotate(circle1, 360*10, 20*1000, new Point(250, 250));
-        this.getAnimator().rotate(circle2, 360*20, 20*1000, new Point(250, 250));
-        this.getAnimator().rotate(circle3, 360*40, 20*1000, new Point(250, 250));
-        this.getAnimator().rotate(circle4, 360*80, 20*1000, new Point(250, 250));
+        
+        var queue = this.getAnimator().createQueue();
+        queue.add(new RotationAnimation(circle1, 360, 2000, new Point(250, 250)));
+        queue.setInfinity(true);
+        queue.start();
+        
+        var queue = this.getAnimator().createQueue();
+        queue.add(new RotationAnimation(circle2, 2*360, 2000, new Point(250, 250)));
+        queue.setInfinity(true);
+        queue.start();
+        
+        var queue = this.getAnimator().createQueue();
+        queue.add(new RotationAnimation(circle3, 4*360, 2000, new Point(250, 250)));
+        queue.setInfinity(true);
+        queue.start();
+        
+        var queue = this.getAnimator().createQueue();
+        queue.add(new RotationAnimation(circle4, 8*360, 2000, new Point(250, 250)));
+        queue.setInfinity(true);
+        queue.start();
+        
+        
         
         this.start();
     };

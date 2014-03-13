@@ -1,11 +1,10 @@
-function RotationAnimation(object, deg, time, point)
+function MoveAnimation(object, vector, time)
 {
     this.object;
-    this.startdeg;
-    this.deg;
+    this.startpos;
+    this.vector;
     this.starttime;
     this.time;
-    this.point;
     this.started;
     this.stoped;
     this.stoptime;
@@ -13,12 +12,11 @@ function RotationAnimation(object, deg, time, point)
     this.onFinishFunction;
     this.animator;
     
-    this.init = function(object, deg, time, point)
+    this.init = function(object, vector, time)
     {
         this.object = object;
-        this.deg = deg;
+        this.vector = vector;
         this.time = time;
-        this.point = point;
         this.started = false;
         this.finished = false;
         this.stoped = false;
@@ -26,18 +24,11 @@ function RotationAnimation(object, deg, time, point)
     
     this.start = function()
     {
-        if(this.stoped)
-        {
-            this.resume();
-        }
-        else
-        {
-            this.startdeg = this.object.getRotation(point);
-            this.starttime = new Date().getTime();
-            this.started = true;
-            this.finished = false;
-            this.stoped = false;
-        }
+        this.startpos = this.object.getPosition();
+        this.starttime = new Date().getTime();
+        this.started = true;
+        this.finished = false;
+        this.stoped = false;
     };
     
     this.stop = function()
@@ -60,7 +51,7 @@ function RotationAnimation(object, deg, time, point)
         if(this.hasStarted() && !this.isStoped() && !this.hasFinished())
         {
             var percent = this.getPercent();
-            this.object.setRotation(this.startdeg+this.deg*percent, this.point);
+            this.object.setPosition(this.startpos.add(this.vector.multiply(percent)));
             if(percent >= 1)
             {
                 this.finished = true;
@@ -122,5 +113,5 @@ function RotationAnimation(object, deg, time, point)
         return this.animator;
     };
         
-    this.init(object, deg, time, point);
+    this.init(object, vector, time);
 }
